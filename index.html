@@ -17,6 +17,9 @@
       #spoiler{
         display: none;
       }
+      #reorder{
+        display: none;
+      }
       body{
         background-color: black;
         background-image:url('./assets/images/heal.jpg');
@@ -49,6 +52,14 @@
         </form>
       </div>
 
+      <div id="reorder" role="aria-hidden">
+        <form action="javascript:void(0);" method="POST" id="saveReorder">
+          <input type="text" id="your-name">
+          <input type="text" id="other-name">
+          <input class="btn btn-secondary" type="submit" value="reorder" /> <a onclick="CloseReorder()"> </a>
+        </form>
+      </div>
+
       <p id="counter"></p>
 
       <table>
@@ -59,7 +70,6 @@
         </tbody>
       </table>
       
-        <input class="btn btn-warning" id="sort-name" onclick="sortThem()" type="submit" value="Sort">
      
     </div>
   </div>

@@ -50,6 +50,7 @@ var app = new function () {
         data += '<tr>';
         data += '<td>' + this.patientList[i] + '</td>';
         data += '<td><button class="btn btn-warning" onclick="app.Edit(' + i + ')">Edit</button></td>';
+        data += '<td><button class="btn btn-warning" onclick="app.ReOrder(' + i + ')">Re Order</button></td>';
         data += '<td><button class="btn btn-danger" onclick="app.Delete(' + i + ')">Delete</button></td>';
         data += '</tr>';
       }
@@ -97,20 +98,39 @@ var app = new function () {
     }
   };
 
-  //Delete patient from array funtion
-  this.Delete = function (item) {
-    // Delete the current row
-    this.patientList.splice(item, 1);
-    // Display the new list
-    this.FetchAll();
-  };
+  this.ReOrder = function (item) {
+    var el = document.getElementById('your-name');
+    var el2 = document.getElementById('other-name');
+    // Display value in the field
+    el.value = this.patientList[item];
+    // Display fields
+    document.getElementById('reorder').style.display = 'block';
+    self = this;
+    document.getElementById('saveReorder').onsubmit = function () {
+      // Get value
+      var patient = el.value;
+      var otherPatient = el2.value;
+      var index1 = this.patientList.indexOf(patient);
+      var index2 = this.patientList.indexOf(otherPatient);
+      this.patientList[index1] = otherPatient;
+      this.patientList[index2] = patient;
+      self.FetchAll();
+      // Hide fields
+      CloseReorder();
+      //give this inner function the scope of the object
+    }.bind(this);
+};
+
+//Delete patient from array funtion
+this.Delete = function (item) {
+  // Delete the current row
+  this.patientList.splice(item, 1);
+  // Display the new list
+  this.FetchAll();
+};
 
 
 }
-
-function sortThem(){
-  patientList.sort();
- }
 
 //Call the app funtion to run
 app.FetchAll();
@@ -119,4 +139,10 @@ app.FetchAll();
 //css property
 function CloseInput() {
   document.getElementById('spoiler').style.display = 'none';
+}
+
+//This funtion hides the edit property after the name was edited or button clicked
+//css property
+function CloseReorder() {
+  document.getElementById('reorder').style.display = 'none';
 }
