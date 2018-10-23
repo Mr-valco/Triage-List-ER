@@ -36,7 +36,7 @@
 <body>
   <div class="container">
     <div class="jumbotron mt-5 image">
-      <h1 class="display-4" style="color:goldenrod ; font:bolder;">Welcome to the Healing Room</h1>
+      <h1 class="display-4" style="color:rgb(218, 90, 196); font-weight: bolder;">Stormwind ER</h1>
       <form action="javascript:void(0);" method="POST" onsubmit="app.Add()">
         <input type="text" id="add-name" placeholder="New Patient">
         <input class="btn btn-warning" type="submit" value="Add">
@@ -58,6 +58,9 @@
         <tbody id="patientList">
         </tbody>
       </table>
+      
+        <input class="btn btn-warning" id="sort-name" onclick="sortThem()" type="submit" value="Sort">
+     
     </div>
   </div>
 

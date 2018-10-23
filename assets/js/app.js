@@ -105,7 +105,12 @@ var app = new function () {
     this.FetchAll();
   };
 
+
 }
+
+function sortThem(){
+  patientList.sort();
+ }
 
 //Call the app funtion to run
 app.FetchAll();
